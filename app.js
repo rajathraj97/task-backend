@@ -2,11 +2,14 @@ const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
 const userController = require("./Controllers/UserController")
+const configureDB = require("./Database/database")
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
+
+configureDB()
 
 
 //Users Api

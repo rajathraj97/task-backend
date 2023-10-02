@@ -14,18 +14,18 @@ const taskSchema = new Schema({
     completed:{
         type:Boolean,
         default:false,
-        required:True
+        required:true
     }
 },{timestamps:true})
 
 taskSchema.pre('save',function(next){
-if(this.title && this.nody){
+if(this.title && this.body){
     next()
 }else{
     res.json({error:"validation error in middleware"})
 }
 })
 
-const Tasks = mongoose.model('task',taskSchema)
+const Task = mongoose.model('task',taskSchema)
 
-module.exports  = Tasks
+module.exports  = Task

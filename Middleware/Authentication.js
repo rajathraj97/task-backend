@@ -29,3 +29,5 @@ const AuthenticateUser = (req,res,next) =>{
     }
 
 }
+
+module.exports = AuthenticateUser

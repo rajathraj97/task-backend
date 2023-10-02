@@ -6,7 +6,8 @@ const taskcontroller = {}
 taskcontroller.get = async(req,res) =>{
     try{
         const body = pick(req.body,['_id'])
-        console.log(body)
+        const findTasks = await Task.find({user:body._id})
+        res.json(findTasks)
     }
     catch(e){
         res.json(e)
@@ -15,7 +16,7 @@ taskcontroller.get = async(req,res) =>{
 
 taskcontroller.create = async(req,res) =>{
     try{
-        const body = pick(req.body,["title","body","completed"])
+        const body = pick(req.body,["title","body","completed","user"])
         const task = new Task(body)
         await task.save()
         res.json(task)
@@ -25,7 +26,7 @@ taskcontroller.create = async(req,res) =>{
     }
 }
 
-taskcontroller.patch = async(req,res) =>{
+taskcontroller.update = async(req,res) =>{
     try{
         const id = req.params.id
         const updatedStatus = await Task.findOneAndUpdate({_id:id},{completed:true},{new:true})

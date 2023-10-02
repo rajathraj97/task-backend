@@ -32,6 +32,7 @@ userController.login = async(req,res) =>{
            const result =  await bcrypt.compare(body.password,userData.password)
            if(result){
             const tokenData = {
+                _id:userData._id,
                 username:userData.username,
                 email:userData.email
             }

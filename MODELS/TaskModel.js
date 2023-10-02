@@ -15,6 +15,10 @@ const taskSchema = new Schema({
         type:Boolean,
         default:false,
         required:true
+    },
+    user:{
+        type:Schema.Types.ObjectId,
+        required:true
     }
 },{timestamps:true})
 

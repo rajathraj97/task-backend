@@ -28,6 +28,7 @@ userController.login = async(req,res) =>{
     try{
         const body = pick(req.body,["email","password"])
         const userData = await User.findOne({email:body.email})
+        console.log(userData)
         if(userData){
            const result =  await bcrypt.compare(body.password,userData.password)
            if(result){

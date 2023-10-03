@@ -5,8 +5,8 @@ const taskcontroller = {}
 
 taskcontroller.get = async(req,res) =>{
     try{
-        const body = pick(req.body,['_id'])
-        const findTasks = await Task.find({user:body._id})
+        const id = req.params.id
+        const findTasks = await Task.find({user:id})
         res.json(findTasks)
     }
     catch(e){
@@ -40,7 +40,8 @@ taskcontroller.update = async(req,res) =>{
 taskcontroller.delete = async(req,res) =>{
     try{
         const id = req.params.id
-        const deleteTask = await Task.findOneAndDelete({_id:id})
+        console.log(id,"id to delete")
+        const deleteTask = await Task.findByIdAndDelete({_id:id})
         res.json(deleteTask)
     }
     catch(e){

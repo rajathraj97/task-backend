@@ -3,7 +3,8 @@ const User = require('../MODELS/UserModel')
 require('dotenv').config()
 
 const AuthenticateUser = (req,res,next) =>{
-    let token = req.headers['Authorization']
+    let token = req.headers['authorization']
+    console.log(token)
     if(token){
         token = token.split(' ')[1]
         try{

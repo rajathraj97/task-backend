@@ -12,18 +12,19 @@ const taskSchema = new Schema({
         required:true
     },
     completed:{
-        type:Boolean,
+        type:String,
         default:false,
         required:true
     },
     user:{
         type:Schema.Types.ObjectId,
+        ref:'User',
         required:true
     }
 },{timestamps:true})
 
 taskSchema.pre('save',function(next){
-if(this.title && this.body){
+if(this.title && this.body && this.user){
     next()
 }else{
     res.json({error:"validation error in middleware"})
